@@ -1,20 +1,22 @@
 import axios from "axios";
 import authHeader from './auth-header';
-const API_URL = "https://social-app-demirel.herokuapp.com/post/";
-
+// const API_URL = "https://social-app-demirel.herokuapp.com/post/";
+const API_URL = "http://localhost:3001/post/";
 
 class PostService {
-  createPost(email, password,) {
+  
+  createPost(postName, description, image) {
+    const formData = new FormData()
+    formData.append('image',image)
+    formData.append('description',description)
+    formData.append('name',postName)
+
     return axios
       .post(API_URL + "createPost", {
-        email,
-        password
-      },{ headers: authHeader() })
+        image,description,image
+      },{ headers: authHeader("multipart/form-data")})
       .then(response => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
-        return response.data;
+        return response;
       });
   }
   getAllPost() {
@@ -29,10 +31,11 @@ class PostService {
     
   }
   deletePost(_id) {
-    console.log(_id)
+    let username = JSON.parse(localStorage.getItem('user')).user.username
+    
     return axios.post(API_URL + "deletePost", {
-      _id
-    },{ headers: authHeader() });
+      _id, username
+    },{ headers: authHeader("application/json") });
   }
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));;

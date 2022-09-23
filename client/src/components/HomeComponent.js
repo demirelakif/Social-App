@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import authService from '../services/auth.service';
 import postService from '../services/post.service';
-import Layout from "./LayoutComponent"
+import Modal from './modalComponent';
 const HomeComponent = () => {
 
-  const [currentUser, setUser] = useState("");
-
+  const [currentUser, setUser] = useState("");  
 
   const [posts, setPosts] = useState();
   useEffect(() => {
@@ -18,13 +17,14 @@ const HomeComponent = () => {
 
   const deletePost = (_id) => {
     postService.deletePost(_id).then((response) => {
-      alert(response.data.message)
+      alert("Post Deleted Successfully")
     })
   }
 
   return (
 
-    <div class="grid max-h-screen place-items-center mt-40 mb-10">
+    <div class="grid max-h-screen place-items-center mt-40 mb-10 w-3/4 mx-auto">
+
       {posts ?
         posts.map(post => (
           <div key={post._id} class=" rounded overflow-hidden border w-full lg:w-6/12 bg-white md:w-6/12 mx-3 md:mx-0 lg:mx-0">

@@ -29,15 +29,15 @@ exports.createPost = async (req, res) => {
 }
 
 exports.deletePost = async (req, res) => {
-  let username = req.user.username
-  Post.findByIdAndDelete(req.body._id , async function (err, docs) {
+  let { _id, username } = req.body;
+  Post.findByIdAndDelete(_id , async function (err, docs) {
     if (err) {
       res.status(400).json({
         error:err
       })
     }
     else {
-      if (username = docs.owner) {
+      if (username) {
         var link = docs.imagePath
         filename = link.split("/").pop().split(".")[0]
         const result = await cloudinary.uploader.destroy(filename);

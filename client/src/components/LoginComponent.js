@@ -1,5 +1,4 @@
 import React from 'react'
-import LoginImg from "../assets/317664.jpg"
 import authService from '../services/auth.service';
 import { useNavigate } from "react-router-dom";
 
