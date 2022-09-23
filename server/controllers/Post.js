@@ -37,7 +37,7 @@ exports.deletePost = async (req, res) => {
       })
     }
     else {
-      if (username) {
+      if (username == docs.owner) {
         var link = docs.imagePath
         filename = link.split("/").pop().split(".")[0]
         const result = await cloudinary.uploader.destroy(filename);
