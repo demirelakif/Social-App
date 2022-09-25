@@ -3,6 +3,7 @@ import Layout from "../components/LayoutComponent"
 import LoginComponent from "../components/LoginComponent"
 import RegisterComponent from "../components/RegisterComponent"
 import HomeComponent from "../components/HomeComponent"
+import ProfileComponent from "../components/ProfileComponent"
 
 export default function Router() {
 let element = useRoutes([
@@ -17,6 +18,7 @@ let element = useRoutes([
         children: [
             { path: "/", element: <HomeComponent /> },
             { path: "/home", element: <HomeComponent /> },
+            { path: "/profile/:username", element: <ProfileComponent /> },
         ],
     },
 ]);

@@ -23,6 +23,19 @@ class PostService {
     return axios
       .get(API_URL + "getAllPost", {
       }).then((response =>{
+        console.log(response)
+        return response.data
+      }))
+      .catch((err)=>{
+        return err.data
+      })
+    
+  }
+  getPostsFromUser(username) {
+    return axios
+      .post(API_URL + "getPostsFromUser", {
+        username
+      }).then((response =>{
         return response.data
       }))
       .catch((err)=>{

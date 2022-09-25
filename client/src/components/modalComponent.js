@@ -20,7 +20,7 @@ export default function Modal() {
   return (
     <>
       <button
-        className="bg-gray-800 text-slate-200 active:bg-pink-600 font-bold uppercase text-sm px-3 py-3"
+        className="bg-gray-800 text-slate-200 active:bg-pink-600 font-bold uppercase text-sm px-2 py-2"
         type="button"
         onClick={() => setShowModal(true)}
       >

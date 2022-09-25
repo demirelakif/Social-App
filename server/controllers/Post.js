@@ -58,9 +58,16 @@ exports.deletePost = async (req, res) => {
 
 exports.getAllPost = async (req, res) => {
   Post.find({}, function(err, posts) {
-
     res.send(posts);  
   });
 }
+
+exports.getPostsFromUser = async (req, res) => {
+  Post.find({owner:req.body.username}, function(err, posts) {
+    res.send(posts);  
+  });
+}
+
+
 
 
